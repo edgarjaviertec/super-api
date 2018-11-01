@@ -61,9 +61,9 @@ app.post('/login', (req, res) => {
 app.post('/prueba', mw.verifyAccessToken, mw.hasPermission(["editar-usuarios", "crear-usuarios", "eliminar-usuarios"]), (req, res) => {
     res.status(200).send("Todo esta bien");
 });
-app.post('/register', validate(val.user.create), userController.create);
+app.post('/register', validate(val.user.create), userController.register);
 
-app.post('/users', validate(val.user.create), userController.create);
+app.post('/users', validate(val.user.register), userController.create);
 app.get('/users', userController.list);
 app.get('/users/:id/', mw.checkResourceExists(mod.User), userController.read);
 app.put('/users/:id/', mw.checkResourceExists(mod.User), validate(val.user.update), userController.update);
@@ -92,8 +92,6 @@ app.use(function (err, req, res, next) {
         let newErrorMessages = [];
         if (err.errors.length > 0) {
             err.errors.forEach((errorItem) => {
-
-
                 if (errorItem.types.length > 0 && errorItem.types.length === errorItem.messages.length) {
                     for (let i = 0; i < errorItem.types.length; i++) {
                         if (errorItem.field.length > 1) {
@@ -104,17 +102,13 @@ app.use(function (err, req, res, next) {
                                 "field": errorItem.field[0] + errorItem.messages[i].replace(re, subst)
                             });
                         } else {
-
                             newErrorMessages.push({
                                 "code": errorItem.types[i],
                                 "field": errorItem.messages[i].replace(/[\"]/g, '')
                             });
-
                         }
-
                     }
                 }
-
             })
         }
         res.status(err.status).json({
