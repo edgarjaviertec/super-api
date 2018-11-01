@@ -1,12 +1,73 @@
 import models from "../models";
 import sequelize from "../db";
 
+
+function list(req, res) {
+    models.Role.findAll().then((roles) => {
+        res.status(200).send(roles);
+    }).catch((error) => {
+        res.status(500).send(error);
+    })
+}
+
 function create(req, res) {
     models.Role.create(req.body).then((created) => {
         res.status(201).send(created);
     }).catch((error) => {
         res.status(500).send(error);
     });
+}
+
+function read(req, res) {
+    let roleId = req.params.id;
+    models.Role.findOne({
+        where: {
+            id: roleId
+        }
+    }).then((role) => {
+        res.status(200).send(role);
+    }).catch((error) => {
+        res.status(500).send(error);
+    })
+}
+
+function update(req, res) {
+    let roleId = req.params.id;
+    let updateValues = {
+        name: req.body.name,
+        displayName: req.body.displayName,
+        description: req.body.description
+    };
+    models.Role.update(updateValues, {
+        where: {
+            id: roleId
+        },
+        returning: true,
+        plain: true
+    }).then(() => {
+        return models.Role.findOne({
+            where: {
+                id: roleId
+            }
+        });
+    }).then((updated) => {
+        res.status(200).send(updated);
+    }).catch((error) => {
+        res.status(500).send(error);
+    });
+}
+
+function remove(req, res) {
+    let roleId = req.params.id;
+    models.Role.destroy({
+        where: {
+            id: roleId
+        }
+    }).then(() => {
+        res.status(204).send();
+    }).catch((error) => {
+        res.status(500).send(error);
+    })
 }
 
 
@@ -199,10 +260,12 @@ function deletePermission(req, res) {
 
 }
 
-
 module.exports = {
+    list: list,
     create: create,
+    read: read,
+    update: update,
+    remove: remove,
     addPermission: addPermission,
     deletePermission: deletePermission
-
 };
