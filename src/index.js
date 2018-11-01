@@ -61,9 +61,9 @@ app.post('/login', (req, res) => {
 app.post('/prueba', mw.verifyAccessToken, mw.hasPermission(["editar-usuarios", "crear-usuarios", "eliminar-usuarios"]), (req, res) => {
     res.status(200).send("Todo esta bien");
 });
-app.post('/register', validate(val.user.create), userController.register);
+app.post('/register', validate(val.user.register), userController.register);
 
-app.post('/users', validate(val.user.register), userController.create);
+app.post('/users', validate(val.user.create), userController.create);
 app.get('/users', userController.list);
 app.get('/users/:id/', mw.checkResourceExists(mod.User), userController.read);
 app.put('/users/:id/', mw.checkResourceExists(mod.User), validate(val.user.update), userController.update);
