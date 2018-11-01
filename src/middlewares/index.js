@@ -5,6 +5,26 @@ import models from "../models";
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 
+let checkResourceExists = function (req, res, next) {
+    let userId = req.params.id;
+    models.User.count({
+        where: {
+            id: userId
+        }
+    }).then((user) => {
+        if (user > 0) {
+            next();
+        } else {
+            let error = {};
+            error.statusCode = 404;
+            error.message = "404 Not Found";
+            next(error);
+        }
+    }).catch((error) => {
+        next(error);
+    })
+};
+
 
 function arrayContainsArray(superset, subset) {
     if (0 === subset.length) {
@@ -79,8 +99,7 @@ function hasPermission(requestedPermissions) {
     }
 }
 
-
-let verifyAccessToken = router.use(function (req, res, next) {
+let verifyAccessToken = function (req, res, next) {
     console.log("midd de verificacion de token");
     let accessToken;
     let hasMultiplePlaces = false;
@@ -139,9 +158,11 @@ let verifyAccessToken = router.use(function (req, res, next) {
             next(error);
         }
     }
-});
+};
+
 
 module.exports = {
+    checkResourceExists: checkResourceExists,
     verifyAccessToken: verifyAccessToken,
     hasPermission: hasPermission
 };
