@@ -1,30 +1,29 @@
-import express from "express";
 import config from "../config"
 import models from "../models";
 
-var router = express.Router();
 const jwt = require('jsonwebtoken');
 
-let checkResourceExists = function (req, res, next) {
-    let userId = req.params.id;
-    models.User.count({
-        where: {
-            id: userId
-        }
-    }).then((user) => {
-        if (user > 0) {
-            next();
-        } else {
-            let error = {};
-            error.statusCode = 404;
-            error.message = "404 Not Found";
+function checkResourceExists(model) {
+    return function (req, res, next) {
+        let id = req.params.id;
+        model.count({
+            where: {
+                id: id
+            }
+        }).then((user) => {
+            if (user > 0) {
+                next();
+            } else {
+                let error = {};
+                error.statusCode = 404;
+                error.message = "404 Not Found";
+                next(error);
+            }
+        }).catch((error) => {
             next(error);
-        }
-    }).catch((error) => {
-        next(error);
-    })
-};
-
+        })
+    };
+}
 
 function arrayContainsArray(superset, subset) {
     if (0 === subset.length) {
@@ -34,7 +33,6 @@ function arrayContainsArray(superset, subset) {
         return (superset.indexOf(value) >= 0);
     });
 }
-
 
 function hasPermission(requestedPermissions) {
     return function (req, res, next) {
@@ -159,7 +157,6 @@ let verifyAccessToken = function (req, res, next) {
         }
     }
 };
-
 
 module.exports = {
     checkResourceExists: checkResourceExists,
