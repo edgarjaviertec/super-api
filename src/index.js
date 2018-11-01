@@ -4,12 +4,14 @@ import expressValidation from 'express-validation';
 import validate from 'express-validation';
 import sequelize from "./db"
 import config from "./config"
-import validations from './validation';
+
 import userController from './controllers/userController';
 import roleController from './controllers/roleController';
 import permissionController from './controllers/permissionController';
-import middlewares from './middlewares';
-import models from "./models";
+
+import mw from './middlewares';
+import mod from "./models";
+import val from './validations';
 
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -21,7 +23,7 @@ app.use(bodyParser.json());
 app.post('/login', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
-    models.User.findOne({where: {username: username}}).then((user) => {
+    mod.User.findOne({where: {username: username}}).then((user) => {
         return user;
     }).then((user) => {
         let userPassword = '';
@@ -56,35 +58,34 @@ app.post('/login', (req, res) => {
         res.status(500).send(e);
     })
 });
-
-app.post('/prueba', middlewares.verifyAccessToken, middlewares.hasPermission(["editar-usuarios", "crear-usuarios", "eliminar-usuarios"]), (req, res) => {
+app.post('/prueba', mw.verifyAccessToken, mw.hasPermission(["editar-usuarios", "crear-usuarios", "eliminar-usuarios"]), (req, res) => {
     res.status(200).send("Todo esta bien");
 });
+app.post('/register', validate(val.user.create), userController.create);
 
-app.put('/users/:id/add_roles', validate(validations.user.addOrRemoveRole), userController.addRole);
-app.delete('/users/:id/remove_roles', validate(validations.user.addOrRemoveRole), userController.deleteRole);
-app.post('/users', validate(validations.user.create), userController.create);
+app.post('/users', validate(val.user.create), userController.create);
 app.get('/users', userController.list);
-app.get('/users/:id/', middlewares.checkResourceExists, userController.read);
-app.put('/users/:id/', userController.update);
-app.delete('/users/:id/', middlewares.checkResourceExists, userController.remove);
+app.get('/users/:id/', mw.checkResourceExists(mod.User), userController.read);
+app.put('/users/:id/', mw.checkResourceExists(mod.User), validate(val.user.update), userController.update);
+app.delete('/users/:id/', mw.checkResourceExists(mod.User), userController.remove);
 
-app.post('/register', validate(validations.user.create), userController.create);
+app.put('/users/:id/add_roles', mw.checkResourceExists(mod.User), validate(val.user.addOrRemoveRole), userController.addRole);
+app.delete('/users/:id/remove_roles', mw.checkResourceExists(mod.User), validate(val.user.addOrRemoveRole), userController.deleteRole);
 
-app.post('/roles', validate(validations.role.create), roleController.create);
-app.get('/roles/:id', roleController.read);
+app.post('/roles', validate(val.role.create), roleController.create);
+app.get('/roles/:id', mw.checkResourceExists(mod.Role), roleController.read);
 app.get('/roles', roleController.list);
-app.put('/roles/:id/', roleController.update);
-app.delete('/roles/:id/', roleController.remove);
-app.put('/roles/:id/add_permissions', validate(validations.role.addOrRemovePermission), roleController.addPermission);
-app.delete('/roles/:id/remove_permissions', validate(validations.role.addOrRemovePermission), roleController.deletePermission);
+app.put('/roles/:id/', mw.checkResourceExists(mod.Role), validate(val.role.update), roleController.update);
+app.delete('/roles/:id/', mw.checkResourceExists(mod.Role), roleController.remove);
 
-app.post('/permissions', validate(validations.permission.create), permissionController.create);
-app.get('/permissions/:id', permissionController.read);
-app.get('/permissions', permissionController.list);
-app.put('/permissions/:id/', permissionController.update);
-app.delete('/permissions/:id/', permissionController.remove);
+app.put('/roles/:id/add_permissions', mw.checkResourceExists(mod.Role), validate(val.role.addOrRemovePermission), roleController.addPermission);
+app.delete('/roles/:id/remove_permissions', mw.checkResourceExists(mod.Role), validate(val.role.addOrRemovePermission), roleController.deletePermission);
 
+app.post('/permissions', validate(val.permission.create), permissionController.create);
+app.get('/permissions/:id', mw.checkResourceExists(mod.Permission), permissionController.read);
+app.get('/permissions', mw.checkResourceExists(mod.Permission), permissionController.list);
+app.put('/permissions/:id/', mw.checkResourceExists(mod.Permission), validate(val.permission.update), permissionController.update);
+app.delete('/permissions/:id/', mw.checkResourceExists(mod.Permission), permissionController.remove);
 
 app.use(function (err, req, res, next) {
     if (err instanceof expressValidation.ValidationError) {
