@@ -61,16 +61,29 @@ app.post('/prueba', middlewares.verifyAccessToken, middlewares.hasPermission(["e
     res.status(200).send("Todo esta bien");
 });
 
-
 app.put('/users/:id/add_roles', validate(validations.user.addOrRemoveRole), userController.addRole);
 app.delete('/users/:id/remove_roles', validate(validations.user.addOrRemoveRole), userController.deleteRole);
+app.post('/users', validate(validations.user.create), userController.create);
+app.get('/users', userController.list);
+app.get('/users/:id/', middlewares.checkResourceExists, userController.read);
+app.put('/users/:id/', userController.update);
+app.delete('/users/:id/', middlewares.checkResourceExists, userController.remove);
+
 app.post('/register', validate(validations.user.create), userController.create);
 
 app.post('/roles', validate(validations.role.create), roleController.create);
+app.get('/roles/:id', roleController.read);
+app.get('/roles', roleController.list);
+app.put('/roles/:id/', roleController.update);
+app.delete('/roles/:id/', roleController.remove);
 app.put('/roles/:id/add_permissions', validate(validations.role.addOrRemovePermission), roleController.addPermission);
 app.delete('/roles/:id/remove_permissions', validate(validations.role.addOrRemovePermission), roleController.deletePermission);
 
 app.post('/permissions', validate(validations.permission.create), permissionController.create);
+app.get('/permissions/:id', permissionController.read);
+app.get('/permissions', permissionController.list);
+app.put('/permissions/:id/', permissionController.update);
+app.delete('/permissions/:id/', permissionController.remove);
 
 
 app.use(function (err, req, res, next) {
