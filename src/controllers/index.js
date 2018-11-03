@@ -1,5 +1,11 @@
 import userController from "./userController"
+import roleController from "./roleController"
+import permissionController from "./permissionController"
+import authController from "./authController"
 
 module.exports = {
-    AddRole: userController.AddRole
+    auth: authController,
+    user: userController,
+    role: roleController,
+    permission: permissionController
 };
