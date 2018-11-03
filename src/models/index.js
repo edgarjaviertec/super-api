@@ -27,7 +27,6 @@ Permission.belongsToMany(Role, {
     through: RolePermission
 });
 
-
 module.exports = {
     User: User,
     Role: Role,
