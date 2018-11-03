@@ -19,8 +19,6 @@ module.exports = {
                     const payLoad = {
                         "id": user.id
                     };
-
-                    console.log("TIEMPO DE TOKEN: " + config.accessTokenLife);
                     const accessToken = jwt.sign(payLoad, config.accessTokenSecret,
                         {
                             expiresIn: config.accessTokenLife
