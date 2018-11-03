@@ -27,8 +27,8 @@ app.get('/users', con.user.list);
 app.get('/users/:id/', mw.checkResourceExists(mod.User), con.user.read);
 app.put('/users/:id/', mw.checkResourceExists(mod.User), validate(val.user.update), con.user.update);
 app.delete('/users/:id/', mw.checkResourceExists(mod.User), con.user.del);
-app.put('/user/:id/add_roles', mw.checkResourceExists(mod.User), validate(val.user.addOrRemoveRole), con.user.addRole);
-app.delete('/user/:id/remove_roles', mw.checkResourceExists(mod.User), validate(val.user.addOrRemoveRole), con.user.deleteRole);
+app.put('/users/:id/add_roles', mw.checkResourceExists(mod.User), validate(val.user.addOrRemoveRole), con.user.addRole);
+app.delete('/users/:id/remove_roles', mw.checkResourceExists(mod.User), validate(val.user.addOrRemoveRole), con.user.deleteRole);
 
 
 app.post('/roles', validate(val.role.create), con.role.create);

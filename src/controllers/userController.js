@@ -62,7 +62,9 @@ module.exports = {
             // Revisamos si los roles que nos están pidiendo existen en la base de datos
             countedRoles.forEach((countedRole, index) => {
                 if (countedRole === 0) {
-                    nonExistentElementsErrorMessages.push("role with id " + requestedRoles[index] + " does not exist");
+                    nonExistentElementsErrorMessages.push({
+                        "field": "roles[" + index + "] role with ID " + requestedRoles[index] + " already been assigned to this user"
+                    });
                 }
             });
             return nonExistentElementsErrorMessages;
@@ -77,11 +79,11 @@ module.exports = {
                     userRoles.push(userRole.id)
                 });
                 // Revisamos si los roles que solicitan son los mismos que el usuario ya tiene asignado
-                requestedRoles.forEach((requestedRole) => {
+                requestedRoles.forEach((requestedRole, index) => {
                     if (userRoles.includes(requestedRole)) {
-                        errorMessages.push(
-                            "role with id " + requestedRole + " already been assigned to this user"
-                        );
+                        errorMessages.push({
+                            "field": "roles[" + index + "] role with ID " + requestedRole + " already been assigned to this user"
+                        });
                     }
                 });
                 // Si el arreglo de mensajes de error no esta vacío entonces lanzamos una excepción para terminar la promesa
@@ -98,7 +100,11 @@ module.exports = {
                     res.status(500).send(error);
                 })
             }).catch((error) => {
-                res.status(400).send(error);
+                res.status(400).send(
+                    {
+                        "errors": error
+                    }
+                );
             });
         })
     },
@@ -133,7 +139,9 @@ module.exports = {
             // Si al contar los roles que consultamos alguno devuelve cero, entonces ese rol no existe en la base de datos
             countedRoles.forEach((countedRole, index) => {
                 if (countedRole === 0) {
-                    nonExistentElementsErrorMessages.push("role with ID " + requestedRoles[index] + " does not exist");
+                    nonExistentElementsErrorMessages.push({
+                        "field": "roles[" + index + "] role with ID " + requestedRoles[index] + " does not exist"
+                    });
                     nonExistentElements.push(requestedRoles[index]);
                 }
             });
@@ -150,11 +158,11 @@ module.exports = {
                     userRoles.push(userRole.id)
                 });
                 // Revisamos si los roles que solicitan son los mismos que el usuario ya tiene asignado
-                requestedRoles.forEach((requestedRole) => {
+                requestedRoles.forEach((requestedRole, index) => {
                     if (!userRoles.includes(requestedRole) && !nonExistentElements.includes(requestedRole)) {
-                        errorMessages.push(
-                            "role with id " + requestedRole + "  is not assigned to this user"
-                        );
+                        errorMessages.push({
+                            "field": "roles[" + index + "] role with ID " + requestedRole + " is not assigned to this user"
+                        });
                     }
                 });
                 // Si el arreglo de mensajes de error no esta vacío entonces lanzamos una excepción para terminar la promesa
@@ -173,7 +181,9 @@ module.exports = {
                     res.status(500).send(error);
                 })
             }).catch((error) => {
-                res.status(400).send(error);
+                res.status(400).send({
+                    "errors": error
+                });
             });
         })
     },
@@ -209,7 +219,9 @@ module.exports = {
             let errorMessages = [];
             countedRoles.forEach((countedRole, index) => {
                 if (countedRole === 0) {
-                    errorMessages.push("role with id " + requestedRoles[index] + " does not exist");
+                    errorMessages.push({
+                        "field": "roles[" + index + "] role with ID " + requestedRoles[index] + " does not exist"
+                    });
                 }
             });
             return errorMessages;
@@ -217,7 +229,7 @@ module.exports = {
             if (errorMessages.length > 0) {
                 let error = {
                     statusCode: 400,
-                    messages: errorMessages
+                    errors: errorMessages
                 };
                 throw error;
             }
@@ -236,7 +248,7 @@ module.exports = {
         }).catch((error) => {
             if (error.statusCode) {
                 res.status(error.statusCode).send({
-                    messages: error.messages
+                    errors: error.errors
                 });
             } else {
                 res.status(500).send(error);
