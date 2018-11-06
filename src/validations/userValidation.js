@@ -12,11 +12,7 @@ export default {
                         allowOnly: 'Passwords do not match',
                     }
                 }
-            }),
-            roles: Joi.array().required().items(
-                Joi.number().integer().min(0)
-            )
-
+            })
         }
     },
 
@@ -28,7 +24,7 @@ export default {
             confirmPassword: Joi.string().required().valid(Joi.ref('password')).options({
                 language: {
                     any: {
-                        allowOnly: 'Passwords do not match',
+                        allowOnly: 'passwords do not match',
                     }
                 }
             })
@@ -50,7 +46,7 @@ export default {
             confirmPassword: Joi.string().required().valid(Joi.ref('password')).options({
                 language: {
                     any: {
-                        allowOnly: 'Passwords do not match',
+                        allowOnly: 'passwords do not match',
                     }
                 }
             })
