@@ -8,31 +8,6 @@ function encryptPassword(password) {
 
 module.exports = {
 
-    register(req, res) {
-        let createUser = (userData) => {
-            return models.User.create(userData)
-        };
-        let getRoles = models.Role.findAll({
-            where: {
-                name: {
-                    [sequelize.Op.or]: ['user']
-                }
-            }
-        });
-        encryptPassword(req.body.password).then((hashedPassword) => {
-            return hashedPassword;
-        }).then((hashedPassword) => {
-            req.body.password = hashedPassword;
-            return Promise.all([createUser(req.body), getRoles])
-        }).then((values) => {
-            const [user, role] = values;
-            user.setRoles(role);
-            res.status(201).send(user);
-        }).catch((error) => {
-            res.status(500).send(error);
-        });
-    },
-
     addRole(req, res) {
         let userId = req.params.id;
         let requestedRoles = req.body.roles;
