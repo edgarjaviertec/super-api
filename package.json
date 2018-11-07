@@ -4,10 +4,10 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "build": "./node_modules/.bin/babel src --out-dir dist",
+    "build": "./node_modules/.bin/babel src --out-dir dist && shx cp -r ./src/email-templates ./dist/email-templates && cp -r ./src/views ./dist/views",
     "babel-node": "babel-node src/index.js",
     "dev": "nodemon --exec npm run babel-node",
-    "start": "node dist/"
+    "start": "node ./dist/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -30,6 +30,7 @@
     "@babel/core": "^7.1.2",
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.4",
+    "shx": "^0.3.2"
   }
 }
