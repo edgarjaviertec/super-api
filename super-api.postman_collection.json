@@ -1,0 +1,616 @@
+{
+	"variables": [],
+	"info": {
+		"name": "super-api",
+		"_postman_id": "1f59f68e-6013-2fa7-dab6-7d2bbe01226c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"description": "",
+			"item": [
+				{
+					"name": "Crear Usuario",
+					"request": {
+						"url": "http://localhost:3001/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"edgar\",\n\t\"email\": \"edgar333@yopmail.com\",\n\t\"password\": \"password\",\n\t\"confirmPassword\": \"password\",\n\t\"roles\": [2]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuarios",
+					"request": {
+						"url": "http://localhost:3001/users",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Usuario",
+					"request": {
+						"url": "http://localhost:3001/users/15235434",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Usuario",
+					"request": {
+						"url": "http://localhost:3001/users/6",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"usuariomod7\",\n\t\"email\": \"usuario-mod6@algo.com\",\n\t\"password\": \"usuariomod10\",\n\t\"confirmPassword\": \"usuariomod10\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Usuario",
+					"request": {
+						"url": "http://localhost:3001/users/3",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Quitar Roles",
+					"request": {
+						"url": "http://localhost:3001/users/5/remove_roles/",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"roles\": [1, 2, 5, 132213]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Asignar Roles",
+					"request": {
+						"url": "http://localhost:3001/users/1/add_roles",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"roles\": [1,2]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"description": "",
+			"item": [
+				{
+					"name": "Crear Rol",
+					"request": {
+						"url": "http://localhost:3001/roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"user\",\n\t\"displayName\": \"The User Role\",\n\t\"description\": \"Somebody who can only manage their profile.\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Rol",
+					"request": {
+						"url": "http://localhost:3001/roles/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"rol-sin-permisos-mod\",\n\t\"displayName\": \"Un rol que no tiene permisos MOD\",\n\t\"description\": \"Este rol solo es de prueba (modificado)\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Rol",
+					"request": {
+						"url": "http://localhost:3001/roles/2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Roles",
+					"request": {
+						"url": "http://localhost:3001/roles",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Rol",
+					"request": {
+						"url": "http://localhost:3001/roles/3",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Asignar Permisos",
+					"request": {
+						"url": "http://localhost:3001/roles/1/add_permissions/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"permissions\": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,17, 18, 19]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Quitar Permisos",
+					"request": {
+						"url": "http://localhost:3001/roles/2/remove_permissions/",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"permissions\": [1, 2, 312321, 2123213, 2]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permisos",
+			"description": "",
+			"item": [
+				{
+					"name": "Crear Permisos",
+					"request": {
+						"url": "http://localhost:3001/permissions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"delete-permissions\",\n\t\"displayName\": \"Delete permissions\",\n\t\"description\": \"N/A\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Permiso",
+					"request": {
+						"url": "http://localhost:3001/permissions/2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Permisos",
+					"request": {
+						"url": "http://localhost:3001/permissions",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Permisos",
+					"request": {
+						"url": "http://localhost:3001/permissions/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"eliminar-usuarios-mod-3\",\n\t\"displayName\": \"Eliminar usuarios - mod\",\n\t\"description\": \"Permite eliminar nuevos usuarios (modificado)\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Permisos copy",
+					"request": {
+						"url": "http://localhost:3001/permissions/4",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxNjIwNzExLCJleHAiOjE1NDE3MDcxMTF9.2Bgrxe9DHogjrBLRJs1NVUbFmd_cINYwB5UATGinzTk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autenticación",
+			"description": "",
+			"item": [
+				{
+					"name": "Login (Obtener Token)",
+					"request": {
+						"url": "http://localhost:3001/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"edgar\",\n\t\"password\": \"password\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cuenta",
+			"description": "",
+			"item": [
+				{
+					"name": "Registrarse",
+					"request": {
+						"url": "http://localhost:3001/register",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"usuarioprueba1\",\n\t\"email\": \"usuarioprueba1@yopmail.com\",\n\t\"password\": \"password123\",\n\t\"confirmPassword\": \"password123\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar contraseña",
+					"request": {
+						"url": "http://localhost:3001/forgot_password",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"prueba503331@yopmail.com\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Confirmar cuenta",
+					"request": {
+						"url": "http://localhost:3001/confirmation",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzIsImlhdCI6MTU0MTUzMTkxNiwiZXhwIjoxNTQxNjE4MzE2fQ.AwEGaMsE-PBsLlzKyGFbHmkbwc2y8ZILxF5bZEH7UCA\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Reiniciar contraseña",
+					"request": {
+						"url": "http://localhost:3001/reset_password",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzIsImlhdCI6MTU0MTUzMjEwNSwiZXhwIjoxNTQxNjE4NTA1fQ.O7nE3lLG9m0wHklOey7g4Sq36XcTz_kpo1CQgM1YllI\",\n\t\"newPassword\": \"pass123\",\n\t\"confirmPassword\": \"pass123\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
