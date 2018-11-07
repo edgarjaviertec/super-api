@@ -5,6 +5,12 @@ API en Node.js protegida con JWT y gestión de usuarios, roles, permisos y enví
 * SQLite3
 * Postman
 
+### Para instalar las dependencias y poder ejecutar el proyecto
+
+```
+npm install
+```
+
 ### Para ejecutar el proyecto en modo desarrollo
 
 ```
