@@ -1,0 +1,59 @@
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+    }
+    .container {
+        width: 100%;
+        max-width: 330px;
+        margin: auto;
+    }
+</style>
+<div class="container text-center">
+    <div id="spinner">
+        <i class="fa-10x fas fa-spinner fa-spin"></i>
+    </div>
+    <div style="display: none" id="content" class="error-message card" style="width: 18rem;">
+        <div class="card-header">{{title}}</div>
+        <div class="card-body">
+            <div style="display: none" id="alertDanger" class="alert alert-danger mt-3" role="alert">
+                <div id="errorResponse"></div>
+            </div>
+            <div style="display: none" id="alertSuccess" class="alert alert-success mt-3" role="alert">
+                <div id="successfulResponse"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function load() {
+        var locationHref = window.location.href;
+        var arr = locationHref.split("/");
+        var url = arr[0] + "//" + arr[2] + '/confirmation';
+        var data = {
+            token: "{{token}}"
+        };
+        axios.post(url, data).then(function (response) {
+            document.getElementById('alertDanger').style.display = 'none';
+            document.getElementById('alertSuccess').style.display = 'block';
+            document.getElementById('successfulResponse').textContent = JSON.stringify(response.data, null, 2);
+        }).catch(function (error) {
+            document.getElementById('alertSuccess').style.display = 'none';
+            document.getElementById('alertDanger').style.display = 'block';
+            document.getElementById('errorResponse').textContent = JSON.stringify(error.response.data, null, 2);
+        }).finally(function () {
+            document.getElementById('spinner').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        });
+    }
+    window.onload = load;
+</script>

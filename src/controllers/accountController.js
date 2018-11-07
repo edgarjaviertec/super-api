@@ -60,6 +60,8 @@ module.exports = {
             const emailToken = jwt.sign(payLoad, config.accessTokenSecret, {
                 expiresIn: config.accessTokenLife
             });
+
+
             const data = {
                 username: user.username,
                 link: "http://localhost:3001/confirmation/" + emailToken
@@ -132,6 +134,53 @@ module.exports = {
         }
     },
 
+    renderConfirmation(req, res){
+        const token = req.params.token;
+        try {
+            const decoded = jwt.verify(token, config.accessTokenSecret);
+            let data = {
+                title: "Confirmation",
+                token: token,
+                decoded: decoded
+            };
+            res.render('confirmation', data);
+        } catch (err) {
+
+            let data = {
+                title: err.name,
+                message: err.message
+            };
+            res.status(401).render('error', data);
+        }
+    },
+
+    renderForgotPassword(req, res){
+        let data = {
+            title: "Forgot Password"
+        };
+        res.render('forgotPassword', data);
+    },
+
+    renderResetPassword(req, res){
+        const token = req.params.token;
+        try {
+            const decoded = jwt.verify(token, config.accessTokenSecret);
+            let data = {
+                title: "Reset Password",
+                token: token,
+                decoded: decoded
+            };
+            res.render('resetPassword', data);
+        } catch (err) {
+
+            let data = {
+                title: err.name,
+                message: err.message
+            };
+            res.status(401).render('error', data);
+        }
+    },
+
     forgotPassword(req, res) {
         const email = req.body.email;
         models.User.findOne({
@@ -152,6 +201,8 @@ module.exports = {
             const token = jwt.sign(payLoad, config.accessTokenSecret, {
                 expiresIn: config.accessTokenLife
             });
+
+            //?token=
             const data = {
                 username: user.username,
                 url: "http://localhost:3001/reset_password/" + token
