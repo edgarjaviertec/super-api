@@ -54,14 +54,6 @@ app.post('/reset_password',
     validate(val.account.resetPassword),
     con.account.resetPassword);
 
-// app.post('/prueba',
-//     mw.verifyAccessToken,
-//     mw.hasPermission(["editar-usuarios", "crear-usuarios", "eliminar-usuarios"]),
-//     (req, res) => {
-//         res.status(200).send("Todo esta bien");
-//     });
-
-
 /* Usuarios */
 
 app.post('/users',
