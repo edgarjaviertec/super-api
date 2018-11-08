@@ -1,25 +1,27 @@
 # super-api
+
 API en Node.js protegida con JWT y gestión de usuarios, roles, permisos y envíos de email.
 
 ### Requerimientos:
+
 * SQLite3
 * Postman
 
 ### Para instalar las dependencias y poder ejecutar el proyecto
 
-```
+```bash
 npm install
 ```
 
 ### Para ejecutar el proyecto en modo desarrollo
 
-```
+```bash
 npm run dev
 ```
 
 ### Para compilar el proyecto para producción 
 
-```
+```bash
 npm run build
 ```
 
