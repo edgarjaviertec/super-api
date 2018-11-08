@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import errorhandler from './errorhandler';
 import sequelize from './db';
 import config from './config';
-import router from './routes/routes';
+import routes from './routes/routes';
 import { join } from "path";
 import exphbs from "express-handlebars"
 const app = express();
@@ -18,7 +18,7 @@ app
         partialsDir: join(__dirname, './views/partials')
     }))
     .set('view engine', '.hbs')
-    .use(router)
+    .use(routes)
     .use(errorhandler);
 
 sequelize.sync().then(runServer);
