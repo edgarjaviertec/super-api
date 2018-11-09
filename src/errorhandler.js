@@ -3,27 +3,20 @@ import expressValidation from 'express-validation';
 function errorhandler(err, req, res, next) {
     if (err instanceof expressValidation.ValidationError) {
         let newErrorMessages = [];
-        if (err.errors.length > 0) {
-            err.errors.forEach((errorItem) => {
-                if (errorItem.types.length > 0 && errorItem.types.length === errorItem.messages.length) {
-                    for (let i = 0; i < errorItem.types.length; i++) {
-                        if (errorItem.field.length > 1) {
-                            var re = /\"(.*?)\"/gm;
-                            var subst = '[$1]';
-                            newErrorMessages.push({
-                                "code": errorItem.types[i],
-                                "field": errorItem.field[0] + errorItem.messages[i].replace(re, subst)
-                            });
-                        } else {
-                            newErrorMessages.push({
-                                "code": errorItem.types[i],
-                                "field": errorItem.messages[i].replace(/[\"]/g, '')
-                            });
-                        }
-                    }
-                }
-            })
-        }
+        const re = /\"(.*?)\"/gm;
+        const subst = '[$1]';
+        // if (err.errors.length > 0) {
+        err.errors.map(errorItem => { // If is declaration is empty don't run the loop
+            const { types, messages, field } = errorItem; // Destructuring assignment 
+            if (types.length > 0 && types.length === messages.length) {
+                types.map((code, i, array) => newErrorMessages.push({ // Rename type to code for dynamic assign
+                    code,
+                    field: field.length > 1
+                        ? `${field[0]} ${messages[i].replace(re, subst)}`
+                        : messages[i].replace(/[\"]/g, '')
+                }));
+            }
+        });
         res.status(err.status).json({
             "errors": newErrorMessages
         });
