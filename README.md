@@ -2,6 +2,11 @@
 
 API en Node.js protegida con JWT y gestión de usuarios, roles, permisos y envíos de email.
 
+## Usuarios por defecto
+
+- `admin` - Usuario con todos los permisos administrativos
+- `edgar` - Usuario con permisos limitados
+
 ### Requerimientos:
 
 * SQLite3
