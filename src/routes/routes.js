@@ -29,10 +29,10 @@ router
         con.account.renderConfirmation)
     .post('/reset_password',
         validate(val.account.resetPassword),
-        con.account.resetPassword);
+        con.account.resetPassword)
 
-/* Usuarios */
-router
+    /* Usuarios */
+
     .post('/users',
         mw.verifyAccessToken,
         validate(val.user.create),
@@ -42,9 +42,6 @@ router
         mw.verifyAccessToken,
         mw.hasPermission(["list-users"]),
         con.user.list)
-    // .get('/users/show-error-500/', con.user.showError500)
-    // .get('/users/show-error-400/', con.user.showError400)
-    // .get('/users/show-custom-error/', con.user.showCustomError)
     .get('/users/:id/',
         mw.checkResourceExists(mod.User),
         mw.verifyAccessToken,
@@ -72,10 +69,10 @@ router
         mw.verifyAccessToken,
         mw.hasPermission(["remove-roles-from-user"]),
         validate(val.user.addOrRemoveRole),
-        con.user.deleteRole);
+        con.user.deleteRole)
 
-/* Roles*/
-router
+    /* Roles*/
+
     .post('/roles',
         mw.verifyAccessToken,
         validate(val.role.create),
@@ -112,11 +109,11 @@ router
         mw.verifyAccessToken,
         mw.hasPermission(["remove-permissions-from-role"]),
         validate(val.role.addOrRemovePermission),
-        con.role.deletePermission);
+        con.role.deletePermission)
 
-/* Permisos */
+    /* Permisos */
 
-router
+
     .post('/permissions',
         mw.verifyAccessToken,
         mw.hasPermission(["create-permissions"]),
