@@ -27,12 +27,29 @@ npm run dev
 npm run build
 ```
 
-### Usuarios por defecto
+### Visión general
+Esto describe los recursos que conforman la API 
+
+#### Usuarios por defecto
 
 | ID | Nombre de usuario | Contraseña | 
 |----|-------------------|------------|
 | 1  | admin             |password    |
 | 2  | user              |password    |
+
+
+#### Autenticación
+
+```bash
+curl -d '{"username":"admin", "password":"password"}' -H "Content-Type: application/json" -X POST http://localhost:3001/login
+```
+
+```json
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTQxODg4NDA3LCJleHAiOjE1NDE5NzQ4MDd9.yPH8VVDOl1KuSa62av_7X4-xcKnf01iNR5EwukrNAmY",
+    "token_type": "Bearer"
+}
+```
 
 ### Screenshots
 
