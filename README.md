@@ -7,13 +7,6 @@ API en Node.js protegida con JWT y gestión de usuarios, roles, permisos y enví
 * SQLite3
 * Postman
 
-### Usuarios por defecto
-
-| ID | Nombre de usuario | Contraseña | 
-|----|-------------------|------------|
-| 1  | admin             |password    |
-| 2  | user              |password    |
-
 Nota: Puedes cambiar la contraseña desde el endpoint **localhost:3001/users/:id**
 
 ### Para instalar las dependencias y poder ejecutar el proyecto
@@ -33,6 +26,13 @@ npm run dev
 ```bash
 npm run build
 ```
+
+### Usuarios por defecto
+
+| ID | Nombre de usuario | Contraseña | 
+|----|-------------------|------------|
+| 1  | admin             |password    |
+| 2  | user              |password    |
 
 ### Screenshots
 
