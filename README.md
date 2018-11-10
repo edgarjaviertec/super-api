@@ -2,6 +2,11 @@
 
 API en Node.js protegida con JWT y gestión de usuarios, roles, permisos y envíos de email.
 
+### Requerimientos:
+
+* SQLite3
+* Postman
+
 ### Usuarios por defecto
 
 | ID | Nombre de usuario | Contraseña | 
@@ -10,11 +15,6 @@ API en Node.js protegida con JWT y gestión de usuarios, roles, permisos y enví
 | 2  | user              |password    |
 
 Nota: Puedes cambiar la contraseña desde el endpoint **localhost:3001/users/:id**
-
-### Requerimientos:
-
-* SQLite3
-* Postman
 
 ### Para instalar las dependencias y poder ejecutar el proyecto
 
