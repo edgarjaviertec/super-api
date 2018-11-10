@@ -2,7 +2,7 @@
 
 API en Node.js protegida con JWT y gestión de usuarios, roles, permisos y envíos de email.
 
-## Usuarios por defecto
+### Usuarios por defecto
 
 | ID | Nombre de usuario | Contraseña | 
 |----|-------------------|------------|
