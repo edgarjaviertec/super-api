@@ -4,8 +4,12 @@ API en Node.js protegida con JWT y gestión de usuarios, roles, permisos y enví
 
 ## Usuarios por defecto
 
-- `admin` - Usuario con todos los permisos administrativos
-- `edgar` - Usuario con permisos limitados
+| ID | Nombre de usuario | Contraseña | 
+|----|-------------------|------------|
+| 1  | admin             |password    |
+| 2  | user              |password    |
+
+Nota: Puedes cambiar la contraseña desde el endpoint **localhost:3001/users/:id**
 
 ### Requerimientos:
 
